@@ -11,7 +11,9 @@ This consists of two tasks.
    the documents, and “position” is the byte offset of the indexed word in the
    document.
 
-_____________________________________________________________________________________________________
+
+Streaming Version of the MapReduce Program has been coded in Python and the API version for Document Indexing has been coded in JAVA
+
 
 
 ## Main Goal
