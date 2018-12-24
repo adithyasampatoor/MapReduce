@@ -18,19 +18,21 @@ NOTE:Streaming Version of the MapReduce Program has been coded in Python and the
 
 First we need to check the mapper code and make sure that mapper output is correct so that it will be the input to the reducer. We can doing this by the command called ‘ECHO’ as follows
 
-echo "13 ss dd ff " | python map.py
+```python echo "13 ss dd ff " | python map.py
 ss      <13,1>
 dd      <13,2>
 ff      <13,3>
+```
 
 So we got our output of the mapper correct.
 
 Then we need to execute the reducer code . So the streaming command for this will be
  
-hadoop jar $HADOOP_HOME/hadoop-*streaming.jar -mapper "python mapper.py" -reducer "python reducer.py" -input /user/hadoop/text/prj1.txt  -output output2 -file /home/hadoop/examples/wordcount/mapper.py -file /home/hadoop/examples/wordcount/reducer.py
+```hadoop jar $HADOOP_HOME/hadoop-*streaming.jar -mapper "python mapper.py" -reducer "python reducer.py" -input /user/hadoop/text/prj1.txt  -output output2 -file /home/hadoop/examples/wordcount/mapper.py -file /home/hadoop/examples/wordcount/reducer.py```
 
 if we execute this command then the following will appear
 
+```
 packageJobJar: [/home/u00717314/map.py, /home/u00717314/reducer.py, /tmp/hadoop-u00717314/hadoop-unjar725185582664128705/] [] /tmp/streamjob1321445056878833012.jar tmpDir=null
 13/09/20 18:37:31 INFO mapred.FileInputFormat: Total input paths to process : 1
 13/09/20 18:37:31 INFO streaming.StreamJob: getLocalDirs(): [/usr/local/hadoop-datastore/hadoop-u00717314/mapred/local]
@@ -43,22 +45,24 @@ packageJobJar: [/home/u00717314/map.py, /home/u00717314/reducer.py, /tmp/hadoop-
 13/09/20 18:37:52 INFO streaming.StreamJob:  map 100%  reduce 100%
 13/09/20 18:37:55 INFO streaming.StreamJob: Job complete: job_201303042120_1418
 13/09/20 18:37:55 INFO streaming.StreamJob: Output: output8
+```
 
 
 Now the streaming job is complete which we can see in the above lines and that map and reduce programs are executed completely without any failure of the job. On the successful completion of the job, the mapreduce runtime creates a_SUCCESS file in the output directory. To display the output the following command is used.
 
-                        bin/hadoop dfs –cat output(8)    _|
+                        bin/hadoop dfs –cat output(8)
 
 output(8) is the value which we have given at the time of streaming. This will appear after entering the above command
 
--rw-r--r--   1 u00717314 u00717314       1162 2013-09-20 18:37 /user/u00717314/output8/part-00000
+```-rw-r--r--   1 u00717314 u00717314       1162 2013-09-20 18:37 /user/u00717314/output8/part-00000```
 
 -rw--r—are the file permissions. Our output will be stored in part-00000 which displays the respective program. Then the following command is used to display the output on the screen which is as follows
 
-                       bin/hadoop dfs –cat output(8)/part-00000   _|
+                       bin/hadoop dfs –cat output(8)/part-00000
  
 This is the final step of the process which displays the output as follows.
 
+```
 and     <3,7><8,6><15,6><13,10><10,10>
 the     <14,5><12,5><11,4><15,2><15,7><16,4><12,2><5,3><7,7><9,5><4,3><3,3><6,4><8,2><2,3><1,6><9,2>
 there   <3,2><4,2><5,2>
@@ -127,7 +131,8 @@ Yes     <13,1>
 grass   <3,4>
 soft    <3,6>
 us      <7,2>
- 
+```
+
 This is the Streaming version of a mapreduce program for document indexing.
 
 	
